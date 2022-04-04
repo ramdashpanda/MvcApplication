@@ -113,6 +113,25 @@ namespace MvcApplication.Controllers
     //        }
     //    }
 
-        
+    //[HttpDelete]
+    //[Route("{term}")]
+    //[Authorize]
+    //public IHttpActionResult Delete(string term)
+    //{
+    //    var CustomListItem = Item.Find(item =>
+    //           item.Term.Equals(term, StringComparison.InvariantCultureIgnoreCase));
+
+    //    if (CustomListItem == null)
+    //    {
+    //        return NotFound();
+    //    }
+    //    else
+    //    {
+    //        Item.Remove(CustomListItem);
+    //        return Ok();
+    //    }
+    //}
+
+
     //}
 }
