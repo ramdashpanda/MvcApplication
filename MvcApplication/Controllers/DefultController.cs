@@ -1,4 +1,5 @@
 ﻿using MvcApplication.Model;
+using MvcApplication.Support;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -37,17 +38,33 @@ namespace MvcApplication.Controllers
             return Json(response.Content);
         }
 
-        //[HttpGet]
-        //[Route("private")]
-        ////[Authorize]
-        //public IHttpActionResult Get1()
-        //{
-        //    var client = new RestClient("http://path_to_your_api/");
-        //    var request = new RestRequest(Method.GET);
-        //    request.AddHeader("authorization", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IndjVEVvSGpGU3ByS3BVMzM2QURmYyJ9.eyJpc3MiOiJodHRwczovL2Rldi0wenR4a21pNC51cy5hdXRoMC5jb20vIiwic3ViIjoiYlFkNzVwZDZCRTBDQXNvbnJ2UjRLM2lBcWxWWG1Zam9AY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vZGV2LTB6dHhrbWk0LnVzLmF1dGgwLmNvbS9hcGkvdjIvIiwiaWF0IjoxNjQ4NTcxNjQ4LCJleHAiOjE2NDg2NTgwNDgsImF6cCI6ImJRZDc1cGQ2QkUwQ0Fzb25ydlI0SzNpQXFsVlhtWWpvIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.JN6zYbBTo8Rsp41KIuu4X04Scw9kY1ohWHD_C4SzaAejkE1x1EZ_Y_wBCZm2A7AA0AKA2SahQUGPLXZ77PqxBiIN-DqXKsIUMjo2qaiieGjHd452NLtyRrHBzd0ApV7j9EH5z5kimPkoEGF1kHq-NB4sFpyucVNPwy9W-IcodaAV1FBGVd_d20hxHAT2iN_EsN2rWpQ69xjp6XJjBeejaF47bruJ4cUgoY1bBMdRG6p7aOYnk7x30EIUClaRNqTVeKG2yDvZ8vCVDWY6jwq7_xS7eKAZa2dQfcAYCiQ-wEZnL9f2GlZJGi81WJpdUC_WZYl9CBv9Q1dO0f6-5C5VSw");
-        //    IRestResponse response = client.Execute(request);
-        //    return Json(response.Content);
-        //}
+        // [HttpPost]
+        //[Route("role")]
+        //public IHttpActionResult Post1()
+        // {
+        //     var client = new RestClient("https://dev-0ztxkmi4.us.auth0.com/oauth/token");
+        //     var request = new RestRequest(Method.POST);
+        //     request.AddHeader("content-type", "application/json");
+        //     request.AddHeader("authorization", "Bearer MGMT_API_ACCESS_TOKEN");
+        //     request.AddHeader("cache-control", "no-cache");
+        //     request.AddParameter("application/json", "{ \"roles\":\"rol_YhIgCKtt78su8kiZ\"}", ParameterType.RequestBody);
+        //     IRestResponse response = client.Execute(request);
+        //     return Json(response.Content);
+        // }
+        [HttpPost]
+        [Route("role")]
+        public IHttpActionResult Post1()
+        {
+            var client = new RestClient("https://dev-0ztxkmi4.us.auth0.com/api/v2/roles/rol_z4jCkxK0LOBqNxkN/permissions");
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("authorization", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IndjVEVvSGpGU3ByS3BVMzM2QURmYyJ9.eyJpc3MiOiJodHRwczovL2Rldi0wenR4a21pNC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjI0MmM1MGFiMDM0NDAwMDY5MmY1MTFlIiwiYXVkIjoiaHR0cHM6Ly9kZXYtMHp0eGttaTQudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NDkzMzY1OTgsImV4cCI6MTY0OTQyMjk5OCwiYXpwIjoicTkyZFVtckdyWFpsUHVyb1N3YjRPWlpGWGxMM2lVbW8iLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIn0.Jgoe9U318JEQsCaMBuwqW7vAzR5l9V_vEmJ7RFADiO8ltgmvOgtwt_CK_xwsDipHyM1SiMik4QxTIdW0Tsu4tKtfV_e_UI0E598CWx545_wuNv5433-MD71DvjNC_zmWvFMn-6e8-mKxqjBWIjn5JG5iNvti8mCw_gPt3zZOk35EQuH73CWZcyA3yV3bxLioKmW3X79NNsVzpCPVWosegWGlFoEqdPKZaAiVwkai3rZl-QaTRVD2-L11J55a-5M_nhZ4YqBa9VvLzBGTOx8m0-98MLXDdywzXuEC5RKTuJRmwoYFfUev6jtC-bP37wxG4lz0chRZ9dkNEmdIBsfZoA.eyJpc3MiOiJodHRwczovL2Rldi0wenR4a21pNC51cy5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NjI0MmM1MGFiMDM0NDAwMDY5MmY1MTFlIiwiYXVkIjoiaHR0cHM6Ly9kZXYtMHp0eGttaTQudXMuYXV0aDAuY29tL2FwaS92Mi8iLCJpYXQiOjE2NDkzMzE3MTksImV4cCI6MTY0OTQxODExOSwiYXpwIjoicTkyZFVtckdyWFpsUHVyb1N3YjRPWlpGWGxMM2lVbW8iLCJzY29wZSI6Im9mZmxpbmVfYWNjZXNzIn0.YRqbDqKLFvIAilU8iz2aNRUwmcBSWZxjaubPO3nSTUiJ5DIFdsI7Y_UcYKzf-WRXW6AqN5AcZfmjqQwWZgTP8UivbK1bACw6vWIKkK_W8LeVPaKLYnq56YrNVrozYSOCIJdJtxTSMb9yVbEeI1B_-8SjA8wfGH0E2kUpRomFyrGCtQlaCRliNfu32JShRLlyPajZYHMdQfhGYaVPWNQuqGKtuRSEwgk1pT5RjVaq33yAx_tOVQR1joRrwmK1TY7_rOTHqL7M8mYc-8lvC1FcxOXL6VTndSP-R-exKtZ-MHNak0jqqonVToDnZ3NA0x5BEQ5sGRFORIixx_IH591uDw");
+            request.AddHeader("cache-control", "no-cache");
+            request.AddParameter("application/json", "{ \"permissions\": [ { \"resource_server_identifier\": \"https://api.surepayroll.com/api/v1/\", \"permission_name\": \"read:hello-resource\" } ] }", ParameterType.RequestBody);
+            IRestResponse response = client.Execute(request);
+            return Json(response.Content);
+        }
+
 
         private static List<CustomListItem> Item = new List<CustomListItem> {
                 new CustomListItem
@@ -69,15 +86,15 @@ namespace MvcApplication.Controllers
 
         [HttpGet]
         [Route("GetAll")]
+        //[MyCustomAuthorization]
         [Authorize]
         public IHttpActionResult Get()
         {
-
             return Ok(Item);
         }
 
         [HttpGet]
-        [Route("Get")]
+        [Route("Get/Term")]
         [Authorize]
         public IHttpActionResult Get(string term)
         {
@@ -94,6 +111,13 @@ namespace MvcApplication.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("Unauthorized")]
+        public IHttpActionResult Unauthorized(string term)
+        {
+            return Unauthorized();
+        }
+
         [HttpPost]
         [Route("Item")]
         [Authorize]
@@ -102,7 +126,6 @@ namespace MvcApplication.Controllers
             Item.Add(customListItem);
             return Ok("Record added to the list.");
         }
-
 
         [HttpPut]
         [Authorize]

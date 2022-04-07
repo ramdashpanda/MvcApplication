@@ -405,6 +405,7 @@
     <Compile Include="Model\CustomListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Support\MyCustomAuthorizationFilter.cs" />
     <Compile Include="Support\OpenIdConnectSigningKeyResolver.cs" />
     <Compile Include="Support\SameSiteCookieManager.cs" />
     <Compile Include="Support\SameSiteSupport.cs" />

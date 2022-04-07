@@ -1,4 +1,5 @@
-﻿using Owin;
+﻿using MvcApplication.Support;
+using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace MvcApplication
         public static void Register(HttpConfiguration config)
         {
             config.MapHttpAttributeRoutes();
-
+            //config.Filters.Add(new MyCustomAuthorizationAttribute());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

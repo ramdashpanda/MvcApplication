@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
@@ -47,30 +48,24 @@ namespace MvcApplication
                     IssuerSigningKeyResolver = (token, securityToken, kid, parameters) => keyResolver.GetSigningKey(kid)
                 }
             });
-                    WebApiConfig.Configure(app);
+            
+            WebApiConfig.Configure(app);
+
+            HttpConfiguration config = new HttpConfiguration();
+            app.Map("/api", inner =>
+            {
+                inner.UseWebApi(config);
+            });
 
             // Set Cookies as default authentication type
             app.SetDefaultSignInAsAuthenticationType(CookieAuthenticationDefaults.AuthenticationType);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = CookieAuthenticationDefaults.AuthenticationType,
-                LoginPath = new PathString("/Account/Login"),
-                CookieSameSite = SameSiteMode.Lax,
-                // More information on why the CookieManager needs to be set can be found here: 
-                // https://github.com/aspnet/AspNetKatana/wiki/System.Web-response-cookie-integration-issues
-                CookieManager = new SameSiteCookieManager(new SystemWebCookieManager())
+                LoginPath = new PathString("/Account/Login"),                
+                
             });
-            var myProvider = new APIAUTHORIZATIONSERVERPROVIDER();
-            OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
-            {
-                AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = myProvider
-            };
-            app.UseOAuthAuthorizationServer(options);
-            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
-            // Configure Auth0 authentication
+
             app.UseOpenIdConnectAuthentication(new OpenIdConnectAuthenticationOptions
             {
                 AuthenticationType = "Auth0",
@@ -127,5 +122,6 @@ namespace MvcApplication
                 }
             });
         }
+
     }
 }
